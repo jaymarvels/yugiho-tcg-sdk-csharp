@@ -6,12 +6,12 @@
     using Newtonsoft.Json;
     using Set;
 
-    public class SpellCard
+    public class SpellCard : ApiResource
     {
-        internal new static string ApiEndpoint { get; } = $"{Global.CardApiBase}?type=spell card";
-
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public override string Id { get; set; }
+
+        internal new static string ApiEndpoint { get; } = $"{Global.CardApiBase}?type=spell card";
 
         [JsonProperty("name")]
         public string Name { get; set; }
