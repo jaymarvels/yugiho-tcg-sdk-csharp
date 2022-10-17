@@ -196,8 +196,8 @@
             #if DEBUG
             // For debugging respose pre deserialisation
             var responseStr = response.Content.ReadAsStringAsync().Result;
-            
-            #endif
+
+#endif
 
             //response.EnsureSuccessStatusCode();
             //if (!response.IsSuccessStatusCode)
