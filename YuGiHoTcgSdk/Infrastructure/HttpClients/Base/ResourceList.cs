@@ -8,26 +8,6 @@ namespace YuGiHoTcgSdk.Infrastructure.HttpClients.Base
     /// </summary>
     public abstract class ResourceList<T> where T : ResourceBase
     {
-        ///// <summary>
-        ///// The number of cards results from this API request
-        ///// </summary>
-        //public int Count { get; set; }
-
-        ///// <summary>
-        ///// The total number of available cards from this API request
-        ///// </summary>
-        //public int TotalCount { get; set; }
-
-        ///// <summary>
-        ///// The current page
-        ///// </summary>
-        //public string Page { get; set; }
-
-        ///// <summary>
-        ///// The size of the page
-        ///// </summary>
-        //public string PageSize { get; set; }
-
         /// <summary>
         /// The object that holds pagination information. Will only populate if request is paginated
         /// </summary>
@@ -39,6 +19,9 @@ namespace YuGiHoTcgSdk.Infrastructure.HttpClients.Base
         /// </summary>
         public bool FromMemoryCache { get; set; } = false;
 
+        /// <summary>
+        /// Will show error from server
+        /// </summary>
         public string Error { get; set; }
     }
 
