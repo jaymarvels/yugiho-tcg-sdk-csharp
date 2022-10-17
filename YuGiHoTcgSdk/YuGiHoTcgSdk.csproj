@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\HttpClients\Cards\Monster\" />
     <Folder Include="Infrastructure\HttpClients\Cards\Token\" />
     <Folder Include="Infrastructure\HttpClients\Cards\Skill\" />
     <Folder Include="Infrastructure\HttpClients\Cards\Trap\" />
