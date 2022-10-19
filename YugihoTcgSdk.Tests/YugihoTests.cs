@@ -3,6 +3,7 @@ namespace YugihoTcgSdk.Tests
     using NUnit.Framework;
     using System.Collections.Generic;
     using YuGiHoTcgSdk.Infrastructure.HttpClients;
+    using YuGiHoTcgSdk.Infrastructure.HttpClients.Archetype;
     using YuGiHoTcgSdk.Infrastructure.HttpClients.Cards.Monster;
     using YuGiHoTcgSdk.Infrastructure.HttpClients.Cards.Skill;
     using YuGiHoTcgSdk.Infrastructure.HttpClients.Cards.Spell;
@@ -25,83 +26,139 @@ namespace YugihoTcgSdk.Tests
         {
             // assemble
             var dicObj = new Dictionary<string, string> {{"setcode", "SDY-046"}};
+
             // act
-            var page = await YugihoClient.GetStringResourceAsync<SetInfo>();
+            var page = await YugihoClient.GetSetInfoResourceAsync<SetInfo>(dicObj);
 
             // assert
-            var xx = page;
+            Assert.That(page.Id, Is.EqualTo("54652250"));
+            Assert.That(page.SetCode, Is.EqualTo("SDY-046"));
+            Assert.That(page.SetName, Is.EqualTo("Starter Deck: Yugi"));
+            Assert.That(page.SetRarity, Is.EqualTo("Common"));
         }
 
         [Test]
         public async Task GetSets_ApiResourceAsync()
         {
-            // assemble
-            var dicObj = new Dictionary<string, string> { { "setcode", "SDY-046" } };
             // act
-            var page = await YugihoClient.GetApiResourceAsync<Sets>();
+            var page = await YugihoClient.GetArrayResourceAsync<Sets>();
 
             // assert
-            var xx = page;
+            Assert.That(page.Count, Is.AtLeast(1));
+            Assert.That(page.Any(x => x.SetCode == "YS15"));
+        }
+
+        [Test]
+        public async Task GetArchetypes_ApiResourceAsync()
+        {
+            // act
+            var page = await YugihoClient.GetArrayResourceAsync<Archetypes>();
+
+            // assert
+            Assert.That(page.Count, Is.AtLeast(1));
+            Assert.That(page.Any(x => x.ArchetypeName == "ABC"));
         }
 
         [Test]
         public async Task GetLinkMonster_ApiResourceAsync()
         {
-            // assemble
-            var dicObj = new Dictionary<string, string> { { "setcode", "SDY-046" } };
+            //assemble
+            string type = "Link Monster";
+
             // act
             var page = await YugihoClient.GetApiResourceAsync<LinkMonster>();
 
             // assert
-            var xx = page;
+            Assert.Multiple(() =>
+            {
+                Assert.That(page.Results.Any);
+                Assert.That(page.Results.FirstOrDefault()?.Type, Is.EqualTo(type));
+                Assert.That(page.Results.LastOrDefault()?.Type, Is.EqualTo(type));
+            });
+        }
+
+        [Test]
+        public async Task GetAllMonsters_ApiResourceAsync()
+        {
+            // act
+            var page = await YugihoClient.GetApiResourceAsync<AllMonsters>();
+
+            // assert
+
+            Assert.That(page.Results.Any);
+
         }
 
         [Test]
         public async Task GetSpellCards_ApiResourceAsync()
         {
-            // assemble
-            var dicObj = new Dictionary<string, string> { { "setcode", "SDY-046" } };
+            //assemble
+            string type = "Spell Card";
+
             // act
             var page = await YugihoClient.GetApiResourceAsync<SpellCard>();
 
             // assert
-            var xx = page;
+            Assert.Multiple(() =>
+            {
+                Assert.That(page.Results.Any);
+                Assert.That(page.Results.FirstOrDefault()?.Type, Is.EqualTo(type));
+                Assert.That(page.Results.LastOrDefault()?.Type, Is.EqualTo(type));
+            });
         }
 
         [Test]
         public async Task GetTrapCards_ApiResourceAsync()
         {
-            // assemble
-            var dicObj = new Dictionary<string, string> { { "setcode", "SDY-046" } };
+            //assemble
+            string type = "Trap Card";
+
             // act
             var page = await YugihoClient.GetApiResourceAsync<TrapCard>();
 
             // assert
-            var xx = page;
+            Assert.Multiple(() =>
+            {
+                Assert.That(page.Results.Any);
+                Assert.That(page.Results.FirstOrDefault()?.Type, Is.EqualTo(type));
+                Assert.That(page.Results.LastOrDefault()?.Type, Is.EqualTo(type));
+            });
         }
 
         [Test]
         public async Task GetTokenCards_ApiResourceAsync()
         {
-            // assemble
-            var dicObj = new Dictionary<string, string> { { "setcode", "SDY-046" } };
+            //assemble
+            string type = "Token";
+
             // act
             var page = await YugihoClient.GetApiResourceAsync<TokenCard>();
 
             // assert
-            var xx = page;
+            Assert.Multiple(() =>
+            {
+                Assert.That(page.Results.Any);
+                Assert.That(page.Results.FirstOrDefault()?.Type, Is.EqualTo(type));
+                Assert.That(page.Results.LastOrDefault()?.Type, Is.EqualTo(type));
+            });
         }
 
         [Test]
         public async Task GetSkillCards_ApiResourceAsync()
         {
-            // assemble
-            var dicObj = new Dictionary<string, string> { { "setcode", "SDY-046" } };
+            //assemble
+            string type = "Skill Card";
+
             // act
             var page = await YugihoClient.GetApiResourceAsync<SkillCard>();
 
             // assert
-            var xx = page;
+            Assert.Multiple(() =>
+            {
+                Assert.That(page.Results.Any);
+                Assert.That(page.Results.FirstOrDefault()?.Type, Is.EqualTo(type));
+                Assert.That(page.Results.LastOrDefault()?.Type, Is.EqualTo(type));
+            });
         }
     }
 }
