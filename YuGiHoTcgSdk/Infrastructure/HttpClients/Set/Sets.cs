@@ -1,11 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿namespace YuGiHoTcgSdk.Infrastructure.HttpClients.Set;
+
 using System;
-
-namespace YuGiHoTcgSdk.Infrastructure.HttpClients.Set;
-
 using Common;
+using Newtonsoft.Json;
 
-public class Sets : ApiResource
+public class Sets : ResourceBase
 {
     public override string Id { get; set; }
 
@@ -22,5 +21,4 @@ public class Sets : ApiResource
 
     [JsonProperty("tcg_date", NullValueHandling = NullValueHandling.Ignore)]
     public DateTime? TcgDate { get; set; }
-
 }
