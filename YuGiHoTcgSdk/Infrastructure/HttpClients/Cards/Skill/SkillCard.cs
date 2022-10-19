@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using Model;
 using Newtonsoft.Json;
 using Set;
+using Common;
 
 public class SkillCard :ApiResource
 {
+    internal new static string ApiEndpoint { get; } = $"{Global.CardApiBase}?type=skill card";
+
     [JsonProperty("id")]
     public override string Id { get; set; }
 

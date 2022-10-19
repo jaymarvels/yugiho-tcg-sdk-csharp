@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Model;
 using Newtonsoft.Json;
 using Set;
-using YuGiHoTcgSdk.Infrastructure.HttpClients.Common;
+using Common;
 
 public class TrapCard : ApiResource
 {

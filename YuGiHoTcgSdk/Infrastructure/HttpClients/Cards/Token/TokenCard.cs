@@ -1,13 +1,15 @@
 ﻿namespace YuGiHoTcgSdk.Infrastructure.HttpClients.Cards.Token;
 
-using System;
 using System.Collections.Generic;
 using Model;
 using Newtonsoft.Json;
 using Set;
+using Common;
 
 public class TokenCard : ApiResource
 {
+    internal new static string ApiEndpoint { get; } = $"{Global.CardApiBase}?type=token";
+
     [JsonProperty("id")]
     public override string Id { get; set; }
 
