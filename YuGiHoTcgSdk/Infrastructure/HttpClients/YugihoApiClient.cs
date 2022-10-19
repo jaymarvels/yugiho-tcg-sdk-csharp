@@ -53,16 +53,10 @@
         public void Dispose()
         {
             _client.Dispose();
-            //_resourceCache.Dispose();
-            //_resourceListCache.Dispose();
+            _resourceCache.Dispose();
+            _resourceListCache.Dispose();
         }
 
-
-        public async Task<T> GetStringResourceAsync<T>() where T : ResourceBase
-        {
-            string url = GetApiEndpointString<T>();
-            return await GetAsync<T>(url, CancellationToken.None);
-        }
 
         /// <summary>
         /// Clears all cached data for both resources and resource lists
@@ -107,6 +101,23 @@
             where T : ResourceBase
         {
             _resourceListCache.Clear<T>();
+        }
+
+        /// <summary>
+        /// Gets an array returned of resource data
+        /// </summary>
+        /// <typeparam name="T">The type of resource</typeparam>
+        /// <returns>The paged resource object</returns>
+        public async Task<List<T>> GetArrayResourceAsync<T>() where T : ResourceBase
+        {
+            string url = GetApiEndpointString<T>();
+            return await GetAsync<List<T>>(url, CancellationToken.None);
+        }
+
+        public async Task<T> GetSetInfoResourceAsync<T>(IDictionary<string, string> filters) where T : ResourceBase
+        {
+            string url = GetApiEndpointString<T>();
+            return await GetAsync<T>(AddQueryFilterParamsToUrl(url, filters), CancellationToken.None);
         }
 
         /// <summary>
@@ -195,18 +206,19 @@
 
             #if DEBUG
             // For debugging respose pre deserialisation
+            var type = typeof(T);
             var responseStr = response.Content.ReadAsStringAsync().Result;
+            #endif
 
-#endif
-
+            // TODO: Return Error msg on bad req
             //response.EnsureSuccessStatusCode();
-            //if (!response.IsSuccessStatusCode)
-            //{
-            //    if (response.StatusCode == HttpStatusCode.BadRequest)
-            //    {
-
-            //    }
-            //}
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    return DeserializeStream<T>(await response.Content.ReadAsStreamAsync());
+                }
+            }
 
             return DeserializeStream<T>(await response.Content.ReadAsStreamAsync());
         }
