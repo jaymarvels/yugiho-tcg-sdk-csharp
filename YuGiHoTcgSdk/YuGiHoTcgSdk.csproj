@@ -12,6 +12,7 @@
     <Folder Include="Infrastructure\HttpClients\Cards\Spell\" />
     <Folder Include="Infrastructure\HttpClients\Common\" />
     <Folder Include="Infrastructure\HttpClients\Base\" />
+    <Folder Include="Infrastructure\HttpClients\Archetype\" />
     <Folder Include="Infrastructure\HttpClients\Set\" />
   </ItemGroup>
 
