@@ -19,8 +19,8 @@ public class Monster : ApiResource
     [JsonProperty("desc")]
     public string Desc { get; set; }
 
-    [JsonProperty("atk")]
-    public long Atk { get; set; }
+    [JsonProperty("atk", NullValueHandling = NullValueHandling.Ignore)]
+    public int Atk { get; set; }
 
     [JsonProperty("race")]
     public string Race { get; set; }
