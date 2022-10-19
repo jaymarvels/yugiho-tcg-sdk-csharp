@@ -5,6 +5,7 @@
         internal const string CardApiBase = "cardinfo.php";
         internal const string SetInfoApiBase = "cardsetsinfo.php";
         internal const string SetsApiBase = "cardsets.php";
+        internal const string ArchetypeApiBase = "archetypes.php";
 
         internal static class Monster
         {
