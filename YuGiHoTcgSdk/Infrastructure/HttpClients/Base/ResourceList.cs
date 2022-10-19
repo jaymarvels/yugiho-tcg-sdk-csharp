@@ -26,9 +26,9 @@ namespace YuGiHoTcgSdk.Infrastructure.HttpClients.Base
     }
 
     /// <summary>
-    /// The paging object for un-named resources
+    /// The object named resources that have a data property
     /// </summary>
-    /// <typeparam name="T">The type of the paged resource</typeparam>
+    /// <typeparam name="T">The type of the resource</typeparam>
     public class ApiResourceList<T> : ResourceList<T> where T : ApiResource
     {
         /// <summary>
