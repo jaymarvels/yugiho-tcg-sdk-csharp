@@ -147,6 +147,11 @@ public static class CardFilters
     /// <param name="paramName">The model property to filter against i.e nameof(TrapCard.Race)</param>
     public static CardFilterCollection<string, string> AddFilter(this CardFilterCollection<string, string> dictionary, string value, string paramName)
     {
+        if (paramName.ToLower() == "name")
+        {
+            return AddOrUpdate(dictionary, paramName.ToLower(), value, "|");
+        }
+
         return AddOrUpdate(dictionary, paramName.ToLower(), value);
     }
 
