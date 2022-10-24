@@ -107,6 +107,20 @@ var card = await yugClient.GetApiResourceAsync<AllMonsters>(filter);
 // Pagination
 var cards = await yugClient.GetApiResourceAsync<AllMonsters>(10, 2, filter);
 ```
+#### Built in Extension Filters
+```c#
+AddLanguage()
+AddId()
+AddCardSet()
+AddBanList()
+AddLinkMarker()
+AddLinkValue()
+AddScaleValue()
+AddAttack (accepts <, <=, >, >=)
+AddDefence (accepts <, <=, >, >=)
+AddLevel (accepts <, <=, >, >=)
+```
+
 ## String Method Definitions
 As these lists as small and of type List<T> these will return all.
 ##### Archetypes
