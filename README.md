@@ -13,7 +13,7 @@ Targets .Net Standard 2.0+.
 Please check [ygoprodeck.com/api-guide/](https://ygoprodeck.com/api-guide/) for information around rate limits, images and downloading of data.
 ```cs
 // instantiate client
-YugihoApiClient pokeClient = new YugihoApiClient();
+YugihoApiClient yugClient = new YugihoApiClient();
 ```
 Internally, `YugihoApiClient` uses an instance of the `HttpClient` class. As such, instances of `YugihoApiClient` are [meant to be instantiated once and re-used throughout the life of an application.](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=netcore-3.1#remarks)
 
@@ -125,17 +125,17 @@ AddLevel (accepts <, <=, >, >=)
 As these lists as small and of type List<T> these will return all.
 ##### Archetypes
 ```c#
-var types = await pokeClient.GetArrayResourceAsync<Archetypes>();
+var types = await yugClient.GetArrayResourceAsync<Archetypes>();
 ```
 ##### Sets
 ```c#
-var sets = await pokeClient.GetArrayResourceAsync<Sets>();
+var sets = await yugClient.GetArrayResourceAsync<Sets>();
 ```
 ##### Set Info
 Set Info requires a parameter passed through
 ```c#
 var dicObj = new Dictionary<string, string> {{"setcode", "SDY-046"}};
-var setinfo = await pokeClient.GetSetInfoResourceAsync<SetInfo>(dicObj);
+var setinfo = await yugClient.GetSetInfoResourceAsync<SetInfo>(dicObj);
 ```
 
 ## Caching
@@ -157,7 +157,7 @@ var fromCache = card.FromCache;
 To clear the cache of data:
 ```c#
 // clear all caches for both resources and pages
-pokeClient.ClearCache();
+yugClient.ClearCache();
 ```
 Additional overloads are provided to allow for clearing the individual caches for resources, as well as by type of cache.
 
@@ -165,7 +165,6 @@ Additional overloads are provided to allow for clearing the individual caches fo
 ```C#
 Card
 TrapCard
-PokemonCard
 TokenCard
 SpellCard
 Sets
