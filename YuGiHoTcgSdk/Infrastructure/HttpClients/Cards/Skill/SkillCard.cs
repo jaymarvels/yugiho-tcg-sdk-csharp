@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using Set;
 using Common;
 
-public class SkillCard :ApiResource
+public class SkillCard : ApiResource
 {
     internal new static string ApiEndpoint { get; } = $"{Global.CardApiBase}?type=skill card";
 
