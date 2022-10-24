@@ -48,7 +48,8 @@ jobs:
       run: dotnet build $SOLUTION --configuration $BUILD_CONFIG -p:Version=$BUILD_VERSION --no-restore
 
     - name: Run tests
-      run: dotnet test /p:Configuration=$env:BUILD_CONFIG --no-restore --no-build --verbosity normal
+      #run: dotnet test /p:Configuration=$env:BUILD_CONFIG --no-restore --no-build --verbosity normal
+      run: dotnet test -c Release --no-build --verbosity normal --filter "Category!=LongRunning"
       
     - name: Publish
       if: startsWith(github.ref, 'refs/heads/release')
