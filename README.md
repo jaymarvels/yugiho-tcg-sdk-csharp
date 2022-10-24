@@ -1,5 +1,5 @@
 
-# Pokémon TCG SDK C#
+# Yu-Gi-Oh TCG SDK C#
 A .Net wrapper for the Yu-Gi-Ho API at [ygoprodeck.com/api-guide/](https://ygoprodeck.com/api-guide/).
 
 Targets .Net Standard 2.0+.
