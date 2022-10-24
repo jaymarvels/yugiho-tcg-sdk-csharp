@@ -145,52 +145,6 @@ internal static class QueryHelpers
             hasQuery = true;
         }
 
-        //if (filterQuery.Any())
-        //{
-        //    sb.Append(hasQuery ? '&' : '?');
-        //    sb.Append('q');
-        //    sb.Append('=');
-        //    hasQuery = false;
-        //}
-
-        //foreach (KeyValuePair<string, string> filterItem in filterQuery)
-        //{
-        //    if (filterItem.Value == null)
-        //    {
-        //        continue;
-        //    }
-
-        //    if (hasQuery)
-        //    {
-        //        sb.Append(' ');
-        //    }
-
-        //    if (filterItem.Value.Split(',').Length > 0)
-        //    {
-        //        var split = filterItem.Value.Split(',');
-        //        foreach (var item in split)
-        //        {
-        //            sb.Append(UrlEncoder.Default.Encode(filterItem.Key));
-        //            sb.Append(':');
-        //            sb.Append(UrlEncoder.Default.Encode(item));
-        //            var orVlaue = " or ";
-        //            if (item != split.LastOrDefault())
-        //            {
-        //                sb.Append(UrlEncoder.Default.Encode(orVlaue));
-        //            }
-        //        }
-
-        //    }
-        //    else
-        //    {
-        //        sb.Append(UrlEncoder.Default.Encode(filterItem.Key));
-        //        sb.Append(':');
-        //        sb.Append(UrlEncoder.Default.Encode(filterItem.Value));
-        //    }
-
-        //    hasQuery = true;
-        //}
-
         return sb.ToString();
     }
 }

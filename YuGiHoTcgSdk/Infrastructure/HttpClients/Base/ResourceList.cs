@@ -15,12 +15,12 @@ namespace YuGiHoTcgSdk.Infrastructure.HttpClients.Base
         public Meta Metadata { get; set; }
 
         /// <summary>
-        /// Marker to show if response is from cache
+        /// Marker to show if response is from memory cache
         /// </summary>
         public bool FromMemoryCache { get; set; } = false;
 
         /// <summary>
-        /// Will show error from server
+        /// Will show error from api server
         /// </summary>
         public string Error { get; set; }
     }
