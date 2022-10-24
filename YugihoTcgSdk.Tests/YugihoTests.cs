@@ -222,5 +222,29 @@ namespace YugihoTcgSdk.Tests
                 Assert.That(page.Results.LastOrDefault()?.Type, Is.EqualTo(type));
             });
         }
+
+        [Test]
+        public async Task GetMonster_ByName_ApiResourceAsync()
+        {
+            //assemble
+            string name = "3-Hump Lacooda";
+            string name2 = "4-Starred Ladybug of Doom";
+            var filter = CardFilterBuilder.CreateCardFilter().AddFilter(name, nameof(Monster.Name)).AddFilter(name2, nameof(Monster.Name));
+
+            // act
+            var page = await YugihoClient.GetApiResourceAsync<AllMonsters>(filter);
+
+            // assert
+            Assert.Multiple(() =>
+            {
+                Assert.That(page.Results.Any);
+                Assert.That(page.Results.FirstOrDefault()?.Name, Is.EqualTo(name));
+                Assert.That(page.Results.LastOrDefault()?.Name, Is.EqualTo(name2));
+            });
+        }
     }
 }
+
+
+
+//3-Hump Lacooda
