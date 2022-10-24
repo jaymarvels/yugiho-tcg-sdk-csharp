@@ -150,11 +150,23 @@ public static class CardFilters
         return AddOrUpdate(dictionary, paramName.ToLower(), value);
     }
 
-    private static CardFilterCollection<string, string> AddOrUpdate(CardFilterCollection<string, string> dictionary, string key, string value)
+    /// <summary>
+    /// Extension method. Will add new filter based on the model property nameof. If filter exists
+    /// will try and concat and create an OR filter. e.g "dp4-3" or "dp4-4"
+    /// </summary>
+    /// <param name="dictionary"></param>
+    /// <param name="value">The name value to add</param>
+    /// <param name="paramName">The model property to filter against i.e nameof(TrapCard.Race)</param>
+    public static CardFilterCollection<string, string> AddName(this CardFilterCollection<string, string> dictionary, string value)
+    {
+        return AddOrUpdate(dictionary, "name", value, "|");
+    }
+
+    private static CardFilterCollection<string, string> AddOrUpdate(CardFilterCollection<string, string> dictionary, string key, string value, string delim = ",")
     {
         if (dictionary.TryGetValue(key, out var oldValue))
         {
-            oldValue = $"{oldValue},{value}";
+            oldValue = $"{oldValue}{delim}{value}";
             dictionary[key] = oldValue;
             return dictionary;
         }
@@ -162,7 +174,7 @@ public static class CardFilters
         dictionary.Add(key, value);
         return dictionary;
     }
-
+    
     private static CardFilterCollection<string, string> AddOrOverwrite(CardFilterCollection<string, string> dictionary, string key, string value)
     {
         if (dictionary.TryGetValue(key, out var oldValue))
