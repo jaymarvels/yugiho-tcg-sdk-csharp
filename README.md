@@ -4,7 +4,7 @@ A .Net wrapper for the Yu-Gi-Ho API at [ygoprodeck.com/api-guide/](https://ygopr
 
 Targets .Net Standard 2.0+.
 
-<!--![workflow](https://github.com/jaymarvels/yugiho-tcg-sdk-csharp/actions/workflows/main.yml/badge.svg)-->
+![workflow](https://github.com/jaymarvels/yugiho-tcg-sdk-csharp/actions/workflows/main.yml/badge.svg)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/jaymarvels/yugiho-tcg-sdk-csharp/CI%20-%20Build%20to%20Nuget?label=CI%20-%20Build&style=flat-square)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/jaymarvels/yugiho-tcg-sdk-csharp?display_name=tag)
 ![Nuget](https://img.shields.io/nuget/v/YuGiHoTcgSdk?style=flat-square)
