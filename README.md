@@ -4,7 +4,8 @@ A .Net wrapper for the Yu-Gi-Ho API at [ygoprodeck.com/api-guide/](https://ygopr
 
 Targets .Net Standard 2.0+.
 
-<!-- ![Nuget](https://img.shields.io/nuget/v/PokemonTcgSdk) ![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/PokemonTcgSdk) -->
+<!-- ![workflow](https://github.com/jaymarvels/yugiho-tcg-sdk-csharp/actions/workflows/main.yml/badge.svg)
+![Nuget](https://img.shields.io/nuget/v/PokemonTcgSdk) ![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/PokemonTcgSdk) -->
 
 # Use
 Please check [ygoprodeck.com/api-guide/](https://ygoprodeck.com/api-guide/) for information around rate limits, images and downloading of data.
