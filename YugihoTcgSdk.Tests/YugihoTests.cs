@@ -2,6 +2,8 @@ namespace YugihoTcgSdk.Tests
 {
     using NUnit.Framework;
     using System.Collections.Generic;
+    using YuGiHoTcgSdk.Features.Common;
+    using YuGiHoTcgSdk.Features.FilterBuilder;
     using YuGiHoTcgSdk.Infrastructure.HttpClients;
     using YuGiHoTcgSdk.Infrastructure.HttpClients.Archetype;
     using YuGiHoTcgSdk.Infrastructure.HttpClients.Cards.Monster;
@@ -126,6 +128,46 @@ namespace YugihoTcgSdk.Tests
         }
 
         [Test]
+        public async Task GetTrapCardsFiltered_ApiResourceAsync()
+        {
+            //assemble
+            string type = "Normal";
+            var filter = CardFilterBuilder.CreateCardFilter().AddFilter("Normal", nameof(TrapCard.Race));
+
+            // act
+            var page = await YugihoClient.GetApiResourceAsync<TrapCard>(filter);
+
+            // assert
+            Assert.Multiple(() =>
+            {
+                Assert.That(page.Results.Any);
+                Assert.That(page.Results.Select(item => item.Race), Is.All.EqualTo(type));
+                Assert.That(page.Results.FirstOrDefault()?.Race, Is.EqualTo(type));
+                Assert.That(page.Results.LastOrDefault()?.Race, Is.EqualTo(type));
+            });
+        }
+
+        [Test]
+        public async Task GetTrapCardsMultiFiltered_ApiResourceAsync()
+        {
+            //assemble
+            string type = "Normal";
+            string cardType = "Legacy of Darkness";
+            var filter = CardFilterBuilder.CreateCardFilter().AddFilter("Normal", nameof(TrapCard.Race)).AddCardSet("Legacy of Darkness");
+
+            // act
+            var page = await YugihoClient.GetApiResourceAsync<TrapCard>(filter);
+
+            // assert
+            Assert.Multiple(() =>
+            {
+                Assert.That(page.Results.Any);
+                Assert.That(page.Results.Select(item => item.Race), Is.All.EqualTo(type));
+                Assert.That(page.Results.Select(item => item.CardSets.Select(card => card.SetName)), Is.All.Contains(cardType));
+            });
+        }
+
+        [Test]
         public async Task GetTokenCards_ApiResourceAsync()
         {
             //assemble
@@ -156,6 +198,26 @@ namespace YugihoTcgSdk.Tests
             Assert.Multiple(() =>
             {
                 Assert.That(page.Results.Any);
+                Assert.That(page.Results.FirstOrDefault()?.Type, Is.EqualTo(type));
+                Assert.That(page.Results.LastOrDefault()?.Type, Is.EqualTo(type));
+            });
+        }
+
+        [Test]
+        public async Task GetLinkMonsterAtkValue_ApiResourceAsync()
+        {
+            //assemble
+            string type = "Link Monster";
+            var filter = CardFilterBuilder.CreateCardFilter().AddAttack(2000, FilterModifer.GreaterThan);
+
+            // act
+            var page = await YugihoClient.GetApiResourceAsync<LinkMonster>(filter);
+
+            // assert
+            Assert.Multiple(() =>
+            {
+                Assert.That(page.Results.Any);
+                Assert.That(page.Results.Select(x => x.Atk), Is.All.GreaterThan(2000));
                 Assert.That(page.Results.FirstOrDefault()?.Type, Is.EqualTo(type));
                 Assert.That(page.Results.LastOrDefault()?.Type, Is.EqualTo(type));
             });

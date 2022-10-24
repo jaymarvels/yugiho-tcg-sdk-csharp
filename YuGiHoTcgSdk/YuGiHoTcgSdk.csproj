@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Common\" />
     <Folder Include="Infrastructure\HttpClients\Cards\Token\" />
     <Folder Include="Infrastructure\HttpClients\Cards\Skill\" />
     <Folder Include="Infrastructure\HttpClients\Cards\Trap\" />
