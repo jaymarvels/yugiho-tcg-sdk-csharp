@@ -20,7 +20,7 @@
                                         $"{Ritual},{RitualEffect}," +
                                         $"{Toon}," +
                                         $"{Fusion}," +
-                                        $"{Synchro},{SynchroTuner},{SynchroPendulumEffect}" +
+                                        $"{Synchro},{SynchroTuner},{SynchroPendulumEffect}," +
                                         $"{XYZ},{XYZPendulumEffect},{Link}," +
                                         $"{PendulumFlipEffect},{PendulumEffectFusion}";
             internal const string Normal = "Normal Monster";
