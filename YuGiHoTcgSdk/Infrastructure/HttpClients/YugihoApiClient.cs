@@ -253,20 +253,22 @@
             return QueryHelpers.AddQueryString(uri, queryParameters);
         }
 
-        private static string AddQueryFilterParamsToUrl(string uri, IDictionary<string, string> filterQuery, int? pageSize = null, int? page = null)
+        private static string AddQueryFilterParamsToUrl(string uri, IDictionary<string, string> filterQuery, int? num = null, int? offset = null)
         {
             var queryParameters = new Dictionary<string, string>();
 
             // TODO consider to always set the pageSize parameter when not present to the default "20"
             // in order to have a single cached resource list for requests with explicit or implicit default take
-            if (pageSize.HasValue)
+            if (num.HasValue)
             {
-                queryParameters.Add(nameof(pageSize), pageSize.Value.ToString());
+                // Page size
+                queryParameters.Add(nameof(num), num.Value.ToString());
             }
 
-            if (page.HasValue)
+            if (offset.HasValue)
             {
-                queryParameters.Add(nameof(page), page.Value.ToString());
+                // page number
+                queryParameters.Add(nameof(offset), offset.Value.ToString());
             }
 
             return QueryHelpers.AddQueryFiltersString(uri, queryParameters, filterQuery);
